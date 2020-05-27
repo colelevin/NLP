@@ -1,21 +1,10 @@
-import handleSubmit from '../src/client/js/formHandler'
-describe(handleSubmit, () => {
-    test("handleSubmit is defined", () => {
-        expect(handleSubmit).toBeDefined
-    });
-});
+import { getValue } from '../src/client/js/formHandler'
 
-describe("handleSubmit function", () => {
-    test("it should filter by a search term (link)", () => {
-        const input = [
-            { id: 1, url: "https://www.url1.dev" },
-            { id: 2, url: "https://www.url2.dev" },
-            { id: 3, url: "https://www.link3.dev" }
-        ];
-
-        const output = [{ id: 3, url: "https://www.link3.dev" }];
-
-        expect(filterByTerm(input, "link")).toEqual(output);
-
+describe("getValue from handleSubmit function", () => {
+    test("it should give the value of an html id", () => {
+        const textAnalysis = { text: "text called" };
+        document.body.innerHTML = '<input id="text" value="text called">';
+        const formText = getValue('#text')
+        expect(formText).toEqual(textAnalysis.text)
     });
 });
